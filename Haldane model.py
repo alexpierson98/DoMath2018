@@ -104,7 +104,7 @@ def fn(k1,k2):
     hk2[1,0] = t * -1j * np.exp(1j * k2)
     hk2[1,1] = -2 * t2 * (-np.sin(p + k2) + np.sin(p + k1 - k2))
 
-    return 0
+    return np.cross({np.dot(estates[2],np.matmul(hk1,estates[1])),np.dot(estates[2],np.matmul(hk1,estates[1])),0},{np.dot(estates[1],np.matmul(hk1,estates[2])),np.dot(estates[1],np.matmul(hk1,estates[2])),0})/(evals[1]-evals[2])^2
 
 
 
