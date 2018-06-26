@@ -1,0 +1,42 @@
+import numpy as np
+import matplotlib as mp
+import matplotlib.pyplot as plt
+
+#n and m are the number of cells in each direction and therefore size is the total # of atoms
+n=8
+m=8
+size = 2*n*m
+va=1
+vb=2
+t=3
+t2=5
+p=6
+
+h=np.zeros((size,size))
+for i in range(size):
+    if i%2==0:
+        h[i,i]=va
+        if i%m!=0 and i%m!=m-1 and i%m!=1 and i%m!=m-2:
+            h[i,(i-2*m+1)%size]=t
+            h[i,(i-1)%size]=t
+            h[i,(i+1)%size]=t
+            h[i,(i+2*m)%size]=t2*p #i just put in t2 times p or minus p for now to not mess with exponentials yet
+            h[i,(i-2*m+2)%size]=t2*p
+            h[i,(i-2)%size]=t2*p
+            h[i,(i-2*m)%size]=-t2*p
+            h[i,(i+2*m-2)%size]=-t2*p
+            h[i,(i+2)%size]=-t2*p
+    else: 
+        h[i,i]=vb
+        if i%m!=0 and i%m!=m-1 and i%m!=1 and i%m!=m-2:
+            h[i,(i+2*m-1)%size]=t
+            h[i,(i-1)%size]=t
+            h[i,(i+1)%size]=t
+            h[i,(i+2*m)%size]=-t2*p
+            h[i,(i-2*m+2)%size]=-t2*p
+            h[i,(i-2)%size]=-t2*p
+            h[i,(i-2*m)%size]=t2*p
+            h[i,(i+2*m-2)%size]=t2*p
+            h[i,(i+2)%size]=t2*p
+                    
+print(h)
